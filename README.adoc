@@ -1,11 +1,9 @@
-# Parent Services POM
+= Parent Services POM
 
-![badge-version](https://img.shields.io/badge/Version-v1.0.0-green.svg)
+== Introduction
+This Maven parent POM is the base parent POM for all of the company's RESTful services.
 
-## Introduction
-This Maven parent POM is the base parent POM for all of the company's RESTful services. 
-
-## Usage
+== Usage
 Include the following in the Maven POM of the RESTful service you're working on:
 
     <parent>
