@@ -32,12 +32,12 @@
         <server>
             <id>github-parent-pom</id>
             <username>aduursma</username>
-            <password>${env.GITHUB_TOKEN}</password>
+            <password>06fac84f51ea07c8ef7eb71f92d75c90a062b787</password>
         </server>
         <server>
             <id>github-parent-services-pom</id>
             <username>aduursma</username>
-            <password>${env.GITHUB_TOKEN}</password>
+            <password>06fac84f51ea07c8ef7eb71f92d75c90a062b787</password>
         </server>
     </servers>
 </settings>
