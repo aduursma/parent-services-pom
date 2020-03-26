@@ -28,17 +28,16 @@
 
         <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
         <rest-assured.version>4.3.0</rest-assured.version>
-
         <spring-restdocs.version>2.0.4.RELEASE</spring-restdocs.version>
 
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-
         <asciidoctor-maven-plugin.version>1.5.8</asciidoctor-maven-plugin.version>
         <jib-maven-plugin.version>1.7.0</jib-maven-plugin.version>
         <spring-cloud-contract-maven-plugin.version>2.1.2.RELEASE</spring-cloud-contract-maven-plugin.version>
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
         <logback.version>1.2.3</logback.version>
         <logback-access-spring-boot-starter.version>2.7.1</logback-access-spring-boot-starter.version>
+        <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
     </properties>
 
     <dependencies>
@@ -150,18 +149,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-contract-verifier</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
@@ -170,17 +157,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <version>${spring-cloud-contract-maven-plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <skip>true</skip>
-                    <testFramework>JUNIT5</testFramework>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
@@ -231,6 +207,35 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>${git-commit-id-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <includeOnlyProperties>
+                        <property>git.branch</property>
+                        <property>git.build.host</property>
+                        <property>git.build.time</property>
+                        <property>git.build.user.name</property>
+                        <property>git.build.version</property>
+                        <property>git.commit.id</property>
+                        <property>git.commit.id.abbrev</property>
+                        <property>git.commit.time</property>
+                        <property>git.commit.user.name</property>
+                        <property>git.dirty</property>
+                    </includeOnlyProperties>
+                </configuration>
             </plugin>
         </plugins>
     </build>
