@@ -29,4 +29,4 @@ jobs:
       env:
         REPO_USERNAME: ${{ github.actor }}
         REPO_TOKEN: ${{ secrets.GITHUB_ORGANIZATION_TOKEN }}
-      run: mvn -U -B --settings settings.xml clean deploy
+      run: mvn -U -B -s settings.xml clean deploy
