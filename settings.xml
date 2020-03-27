@@ -23,13 +23,13 @@
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </repository>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub Microservices Playground Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/aduursma/parent-services-pom</url>
-                    <releases><enabled>true</enabled></releases>
-                    <snapshots><enabled>true</enabled></snapshots>
-                </repository>
+<!--                <repository>-->
+<!--                    <id>github</id>-->
+<!--                    <name>GitHub Microservices Playground Apache Maven Packages</name>-->
+<!--                    <url>https://maven.pkg.github.com/aduursma/parent-services-pom</url>-->
+<!--                    <releases><enabled>true</enabled></releases>-->
+<!--                    <snapshots><enabled>true</enabled></snapshots>-->
+<!--                </repository>-->
             </repositories>
         </profile>
     </profiles>
