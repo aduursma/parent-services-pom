@@ -27,6 +27,6 @@ jobs:
 
     - name: Publish to GitHub Packages Apache Maven
       env:
-        GITHUB_ACTOR: x-access-token
+        GITHUB_ACTOR: aduursma
         GITHUB_TOKEN: ${{ secrets.GITHUB_ORGANIZATION_TOKEN }}
       run: mvn -U -B clean deploy
