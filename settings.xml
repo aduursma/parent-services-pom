@@ -29,13 +29,18 @@
 <!--    </profiles>-->
 
     <servers>
+<!--        <server>-->
+<!--            <id>github-parent-pom</id>-->
+<!--            <username>aduursma</username>-->
+<!--            <password>${env.REPO_TOKEN}</password>-->
+<!--        </server>-->
+<!--        <server>-->
+<!--            <id>github-parent-services-pom</id>-->
+<!--            <username>aduursma</username>-->
+<!--            <password>${env.REPO_TOKEN}</password>-->
+<!--        </server>-->
         <server>
-            <id>github-parent-pom</id>
-            <username>aduursma</username>
-            <password>${env.REPO_TOKEN}</password>
-        </server>
-        <server>
-            <id>github-parent-services-pom</id>
+            <id>github</id>
             <username>aduursma</username>
             <password>${env.REPO_TOKEN}</password>
         </server>
