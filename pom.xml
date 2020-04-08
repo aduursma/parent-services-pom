@@ -5,7 +5,7 @@
     <parent>
         <groupId>nl.agility.maven</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.0.0-ad38727b</version>
+        <version>1.0.0-25a75cda</version>
     </parent>
 
     <artifactId>parent-services-pom</artifactId>
@@ -26,6 +26,8 @@
 
         <image.path>registry.hub.docker.com/andreduursma/${project.artifactId}</image.path>
 
+        <commons-web-spring-boot-starter.version>1.0.0-566fd314</commons-web-spring-boot-starter.version>
+
         <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
         <rest-assured.version>4.3.0</rest-assured.version>
         <spring-restdocs.version>2.0.4.RELEASE</spring-restdocs.version>
@@ -38,7 +40,6 @@
         <logback.version>1.2.3</logback.version>
         <logback-access-spring-boot-starter.version>2.7.1</logback-access-spring-boot-starter.version>
         <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
-        <commons-web-spring-boot-starter.version>1.0.0-583cfc03</commons-web-spring-boot-starter.version>
     </properties>
 
     <dependencies>
