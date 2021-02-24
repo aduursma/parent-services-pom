@@ -26,7 +26,7 @@
 
         <image.path>registry.hub.docker.com/andreduursma/${project.artifactId}</image.path>
 
-        <commons-web-spring-boot-starter.version>1.0.0-566fd314</commons-web-spring-boot-starter.version>
+        <commons-web-spring-boot-starter.version>1.0.0-a67de26f</commons-web-spring-boot-starter.version>
 
         <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
         <rest-assured.version>4.3.3</rest-assured.version>
