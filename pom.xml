@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <name>Agility IT Services - Parent Services POM</name>
-    <description>The Agility IT Services' Parent Services POM is used as the parent for all RESTful services</description>
+    <description>The Agility IT Services' Parent Services POM is used as the parent for all Spring Boot applications.</description>
 
     <scm>
         <url>https://github.com/aduursma/parent-services-pom</url>
@@ -26,39 +26,30 @@
 
         <image.path>registry.hub.docker.com/andreduursma/${project.artifactId}</image.path>
 
+        <skipSpecGenerator>true</skipSpecGenerator>
+
+        <commons-architecture-test.version>1.0.0-123</commons-architecture-test.version>
+        <commons-logging-spring-boot-starter.version>1.0.0-123</commons-logging-spring-boot-starter.version>
+        <commons-test.version>1.0.0-123</commons-test.version>
         <commons-web-spring-boot-starter.version>1.0.0-a67de26f</commons-web-spring-boot-starter.version>
 
-        <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
-        <rest-assured.version>4.3.3</rest-assured.version>
-        <spring-restdocs.version>2.0.5.RELEASE</spring-restdocs.version>
-        <spring-cloud-starter-kubernetes.version>1.1.8.RELEASE</spring-cloud-starter-kubernetes.version>
+        <asciidoctorj-diagram.version>2.2.3</asciidoctorj-diagram.version>
+        <brave.version>5.14.1</brave.version>
+        <springmockk.version>3.1.1</springmockk.version>
+        <spring-cloud-services.version>3.5.0</spring-cloud-services.version>
+        <spring-restdocs-asciidoctor.version>2.0.6.RELEASE</spring-restdocs-asciidoctor.version>
 
-        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
-        <jib-maven-plugin.version>2.7.1</jib-maven-plugin.version>
-        <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
-        <logback.version>1.2.3</logback.version>
-        <logback-access-spring-boot-starter.version>2.7.1</logback-access-spring-boot-starter.version>
-        <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
+        <arch-unit-maven-plugin.version>3.0.0</arch-unit-maven-plugin.version>
+        <asciidoctor-maven-plugin.version>2.2.2</asciidoctor-maven-plugin.version>
+        <jib-maven-plugin.version>3.3.1</jib-maven-plugin.version>
+        <restdocs-spec-maven-plugin.version>0.21</restdocs-spec-maven-plugin.version>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
         <!-- Spring Boot WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Spring Boot Security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- Spring Boot Actuator -->
@@ -71,15 +62,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
 
         <!-- Spring Boot Configuration Processor -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
-        <!--            <optional>true</optional>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
 
         <!-- Spring Cloud Kubernetes -->
         <dependency>
@@ -104,105 +97,57 @@
             <artifactId>brave-opentracing</artifactId>
         </dependency>
 
-        <!-- Microservices Playground - Commons -->
+        <!-- Commons -->
         <dependency>
             <groupId>nl.agility.commons</groupId>
             <artifactId>commons-web-spring-boot-starter</artifactId>
             <version>${commons-web-spring-boot-starter.version}</version>
         </dependency>
 
-        <!-- Logging -->
+        <!-- Spring Security Test -->
         <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>${logstash-logback-encoder.version}</version>
-        </dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
+        <!-- Spring MockK -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.rakugakibox.spring.boot</groupId>
-            <artifactId>logback-access-spring-boot-starter</artifactId>
-            <version>${logback-access-spring-boot-starter.version}</version>
-        </dependency>
-
-        <!-- Hibernate Validator -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate-validator.version}</version>
-        </dependency>
-
-        <!-- Apache Commons -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
-
-        <!-- TEST -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <groupId>com.ninja-squad</groupId>
+            <artifactId>springmockk</artifactId>
+            <version>${springmockk.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>${asciidoctor-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-docs</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <doctype>book</doctype>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework.restdocs</groupId>
-                        <artifactId>spring-restdocs-asciidoctor</artifactId>
-                        <version>${spring-restdocs.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-bom</artifactId>
+                <version>${brave.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <build>
+        <!-- Create the artifact's final name without a version in it. -->
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -224,35 +169,187 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>${git-commit-id-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>get-the-git-infos</id>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <includeOnlyProperties>
-                        <property>git.branch</property>
-                        <property>git.build.host</property>
-                        <property>git.build.time</property>
-                        <property>git.build.user.name</property>
-                        <property>git.build.version</property>
-                        <property>git.commit.id</property>
-                        <property>git.commit.id.abbrev</property>
-                        <property>git.commit.time</property>
-                        <property>git.commit.user.name</property>
-                        <property>git.dirty</property>
-                    </includeOnlyProperties>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>documentation-test</id>
+            <activation>
+                <property>
+                    <name>all-profiles</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>run-documentation-tests</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>**/*Documentation.java</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>**/*IT.java</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctor-maven-plugin</artifactId>
+                        <version>${asciidoctor-maven-plugin.version}</version>
+                        <configuration>
+                            <attributes>
+                                <data-uri/>
+                            </attributes>
+                            <requires>
+                                <require>asciidoctor-diagram</require>
+                            </requires>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-docs</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>html</backend>
+                                    <doctype>book</doctype>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.springframework.restdocs</groupId>
+                                <artifactId>spring-restdocs-asciidoctor</artifactId>
+                                <version>${spring-restdocs-asciidoctor.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctorj-diagram</artifactId>
+                                <version>${asciidoctorj-diagram.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>io.github.berkleytechnologyservices</groupId>
+                        <artifactId>restdocs-spec-maven-plugin</artifactId>
+                        <version>${restdocs-spec-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>generate-api-spec</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <specifications>
+                                        <specification>
+                                            <type>OPENAPI_V3</type>
+                                            <format>JSON</format>
+                                        </specification>
+                                        <specification>
+                                            <type>POSTMAN_COLLECTION</type>
+                                            <filename>${project.artifactId}-collection</filename>
+                                        </specification>
+                                    </specifications>
+                                    <outputDirectory>${project.build.directory}/generated-docs</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>${maven-resources-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>copy-api-docs</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.outputDirectory}/static/api-docs</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/generated-docs</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>architecture-test</id>
+            <activation>
+                <property>
+                    <name>all-profiles</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.societegenerale.commons</groupId>
+                        <artifactId>arch-unit-maven-plugin</artifactId>
+                        <version>${arch-unit-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>run-architecture-tests</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>arch-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <excludedPaths combine.children="append">
+                            </excludedPaths>
+                            <rules>
+                                <configurableRules>
+                                    <configurableRule>
+                                        <rule>nl.agility.commons.architecture.rules.GeneralCodingRules</rule>
+                                    </configurableRule>
+                               </configurableRules>
+                            </rules>
+                        </configuration>
+                        <dependencies>
+                            <!-- Spring Boot WEB -->
+                            <dependency>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-starter-web</artifactId>
+                                <version>${spring-boot.version}</version>
+                            </dependency>
+
+                            <!-- Commons Architecture test -->
+                            <dependency>
+                                <groupId>nl.agility.commons</groupId>
+                                <artifactId>commons-architecture-test</artifactId>
+                                <version>${commons-architecture-test.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

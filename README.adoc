@@ -11,10 +11,10 @@
 image:{img-build-status}[Build Status Badge,link={uri-build-status}] image:{img-quality-gateway}[Quality Gateway Badge,link={uri-quality-gateway}] image:{img-version}[Version Badge,link={uri-version}]
 
 == Introduction
-This Maven parent POM is the base parent POM for all of the company's RESTful services.
+This Maven parent POM is the base parent POM for all of the company's Spring Boot applications.
 
 == Usage
-Include the following in the Maven POM of the RESTful service you're working on:
+Include the following in the Maven POM of the Spring Boot application you're working on:
 
     <parent>
         <groupId>nl.agility.maven</groupId>
